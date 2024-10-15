@@ -1,37 +1,36 @@
-import { ApiClient } from '.'
+import { ApiClient } from ".";
 
 interface ILogin {
-  email: string
-  password: string
-  expiresInMins?: number // optional
+  email: string;
+  password: string;
+  expiresInMins?: number; // optional
 }
 
 interface IUserInfoHeaders {
-  Authorization: string
+  Authorization: string;
   // you can add more headers here
 }
 
 interface IRefreshTokenHeaders {
-  'Content-Type': string
-  Authorization: string
+  "Content-Type": string;
+  Authorization: string;
 }
 
 interface IRefreshTokenBody {
-  expiresInMins?: number
+  expiresInMins?: number;
 }
 
 export const login = (payload: ILogin) => {
-    console.log('payload',payload)
-  return ApiClient.post(`/api/auth/login`, payload, {})
-}
+  return ApiClient.post(`/api/auth/login`, payload, {});
+};
 export const getUserInfo = (headers: IUserInfoHeaders) => {
-  return ApiClient.get(`/auth/me`, headers)
-}
+  return ApiClient.get(`/auth/me`, headers);
+};
 
 export const refreshToken = (
   payload: IRefreshTokenBody,
   headers: IRefreshTokenHeaders
 ) => {
   // console.log('refreshToken', payload, headers)
-  return ApiClient.post(`/api/v1/auth/refresh`, payload, headers)
-}
+  return ApiClient.post(`/api/v1/auth/refresh`, payload, headers);
+};
